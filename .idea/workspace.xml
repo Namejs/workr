@@ -36,11 +36,20 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/templates/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="60" column="0" selection-start="1745" selection-end="1745" vertical-scroll-proportion="0.020075282">
-                  <folding />
+                <state line="105" column="14" selection-start="3260" selection-end="3260" vertical-scroll-proportion="0.9134253">
+                  <folding>
+                    <element signature="e#4115#4139#0" expanded="true" />
+                    <element signature="e#4354#4378#0" expanded="true" />
+                    <element signature="e#5492#5512#0" expanded="true" />
+                    <element signature="e#6028#6053#0" expanded="true" />
+                    <element signature="e#6225#6251#0" expanded="true" />
+                    <element signature="e#6340#6364#0" expanded="true" />
+                    <element signature="e#6510#6530#0" expanded="true" />
+                    <element signature="e#6615#6636#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -58,7 +67,7 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="__init__.py" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/__init__.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="58" column="4" selection-start="1656" selection-end="1656" vertical-scroll-proportion="0.23357664">
@@ -70,7 +79,7 @@
           <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/templates/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="184" column="0" selection-start="6713" selection-end="6713" vertical-scroll-proportion="0.0">
+                <state line="184" column="0" selection-start="6716" selection-end="6716" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -111,8 +120,8 @@
         <option value="$PROJECT_DIR$/app/templates/test.html" />
         <option value="$PROJECT_DIR$/app/imgconv.py" />
         <option value="$PROJECT_DIR$/app/templates/images_bu.html" />
-        <option value="$PROJECT_DIR$/app/templates/index.html" />
         <option value="$PROJECT_DIR$/app/__init__.py" />
+        <option value="$PROJECT_DIR$/app/templates/index.html" />
       </list>
     </option>
   </component>
@@ -642,7 +651,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="6" selection-start="1329" selection-end="1329" vertical-scroll-proportion="-25.6" />
+        <state line="40" column="6" selection-start="1329" selection-end="1329" vertical-scroll-proportion="-25.6">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/form.html">
@@ -689,17 +700,26 @@
         <state line="19" column="0" selection-start="461" selection-end="461" vertical-scroll-proportion="0.26826346" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="184" column="0" selection-start="6713" selection-end="6713" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="58" column="4" selection-start="1656" selection-end="1656" vertical-scroll-proportion="0.23357664">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="105" column="14" selection-start="3260" selection-end="3260" vertical-scroll-proportion="0.9134253">
+          <folding>
+            <element signature="e#4115#4139#0" expanded="true" />
+            <element signature="e#4354#4378#0" expanded="true" />
+            <element signature="e#5492#5512#0" expanded="true" />
+            <element signature="e#6028#6053#0" expanded="true" />
+            <element signature="e#6225#6251#0" expanded="true" />
+            <element signature="e#6340#6364#0" expanded="true" />
+            <element signature="e#6510#6530#0" expanded="true" />
+            <element signature="e#6615#6636#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
