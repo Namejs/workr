@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+<p><a href="{{ url_for('list') }}">back to list</a></p>
+<h1>This is the Post page</h1>
+    <p>created on: {{ created_on.strftime('%d.%m.%Y') }}</p>
+lnlk;l;
+
+    <h2>Posted by {{ user }}</h2>
+
+<h3> I need an {{ craft }} in {{ city }} <br>
+
+And he has to do: <br>
+
+{{ description }} <br>
+Desired start date: {{ start_date.strftime('%d.%m.%Y') }} <br>
+
+</h3>
+
+<div>
+{% for i in images %}
+    <a href="{{ url_for('static', filename = i.image) }}">
+         <img src="{{ url_for('static', filename = i.thumbnail) }}">
+    </a>
+{% endfor %}
+</div>
+
+
+{% endblock %}

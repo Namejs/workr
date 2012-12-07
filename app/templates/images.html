@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>jQuery File Upload Example</title>
+</head>
+<body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+<script>
+
+    $(function(){
+
+        var image = document.getElementById('file');
+
+        image.addEventListener('change', callbackFunction);
+
+        function callbackFunction(event) {
+
+            var form = new FormData();
+
+            var l = image.files.length;
+
+            for(var i=0; i < l; i++){
+
+                form.append("image", image.files[i]);
+            }
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('post', '/images', true);
+
+            xhr.send(form);
+
+            xhr.onreadystatechange = function(){
+                var sub_url = xhr.response;
+                console.log(sub_url)
+            };
+        }
+
+        $("div div a").click(function(event) {
+
+            event.preventDefault();
+            var x;
+            var r=confirm("Delete image ?");
+            if(r==true){
+
+            }
+
+            var delete_file = event.target.id;
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('delete', '/images', true);
+
+            xhr.send(delete_file);
+
+            xhr.onreadystatechange = function(){
+                $("body").html(xhr.response);
+            };
+        })
+
+
+
+    });
+</script>
+
+ <form id="image_upload" enctype="multipart/form-data">
+     <input type="file" id="file" multiple /><br />
+ </form>
+
+<div id="im">
+    {% for i in images %}
+        <div style="float: left; text-align: center; margin: 5px;">
+            <div style="width: 100%; margin: 0 auto">
+                <img src="{{ url_for('static', filename = i.thumbnail) }}"><br>
+                <a href="" id="{{ i.thumbnail }}">Delete</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>
+

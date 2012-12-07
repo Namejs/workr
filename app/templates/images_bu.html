@@ -1,0 +1,53 @@
+
+<style>
+    .x_button {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+
+        display: block;
+        width: 16px;
+        height: 16px;
+        background: url('{{ url_for('static', filename="img/x_button.png") }}') bottom;
+
+    }
+    .x_button:hover{
+        background-position: 0 0;
+    }
+</style>
+{% for i in images %}
+<div style="position: relative; float: left; text-align: center; margin-top: 10px; margin-right: 22px;" class="img-polaroid">
+
+        <img src="{{ url_for('static', filename = i.thumbnail) }}"><a class="x_button" id="{{ i.thumbnail }}"></a>
+
+</div>
+{% endfor %}
+
+
+{##}
+{#<script>#}
+{#    console.log("this is the console log for second xhr request");#}
+{##}
+{#    $("").click(function(event) {#}
+{##}
+{#        event.preventDefault();#}
+{#        var x;#}
+{#        var r=confirm("Delete image ?");#}
+{#        if(r==true){#}
+{##}
+{#        }#}
+{##}
+{#        var delete_file = event.target.id;#}
+{##}
+{#        xhr = new XMLHttpRequest();#}
+{##}
+{#        xhr.open('delete', '/images', true);#}
+{##}
+{#        xhr.send(delete_file);#}
+{##}
+{#        xhr.onreadystatechange = function(){#}
+{#            $("body").html(xhr.response);#}
+{#        };#}
+{#    })#}
+{##}
+{#</script>#}

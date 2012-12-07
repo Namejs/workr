@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+{% block content %}
+<style xmlns="http://www.w3.org/1999/html">
+    #datepicker{
+        background-image: url('{{ url_for('static', filename='css/calendar.png') }}');
+        background-position:98% 50%;
+        background-repeat:no-repeat;
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    $(document).ready(function(){
+
+        $('#city').typeahead();
+
+        $('input#datepicker').Zebra_DatePicker({
+            direction: true,
+            format: 'd/m/Y',
+            show_week_number: 'Wk',
+            always_show_clear: false
+        });
+
+        $('#openAddListing').click(function(event){
+            event.preventDefault();
+            event.stopPropagation();
+            $('#addListing').modal('show');
+        });
+
+        var myCarousel = $('#addListingCarousel').carousel({
+            interval: false
+        });
+
+        var images = document.getElementById('file');
+        images.addEventListener('change', callbackFunction);
+        function callbackFunction(event){
+
+            var form = new FormData();
+            var l = images.files.length;
+
+            for(var i=0; i < l; i++){
+                form.append("images", images.files[i]);
+            }
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('put', '/', true);
+            xhr.send(form);
+
+            xhr.onreadystatechange = function(){
+                $('#im').html(xhr.response);
+            };
+        }
+
+        $('#submitButton').click(function(){
+            var craft       = $('#craft').val();
+            var city        = $('#city').val();
+            var description = $('#description').val();
+            var email       = $('#email').val();
+            var start_date  = $('#datepicker').val();
+
+            var form        = new FormData();
+
+            form.append("craft", craft);
+            form.append("city", city);
+            form.append("description", description);
+            form.append("email", email);
+            form.append("start_date",start_date);
+
+            var xhr         = new XMLHttpRequest();
+
+            xhr.open('post', '/', false);
+            xhr.send(form);
+{##}
+{#            xhr.onreadystatechange = function(){#}
+{#                console.log('submitted data');#}
+{#            };#}
+
+        });
+
+
+    });
+</script>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="{{ url_for('index') }}">Worker</a>
+                <ul class="nav">
+                    <li class="active"><a href="{{ url_for('list') }}">Listings</a></li>
+                    <li><a id="openAddListing" href>Post new listing</a></li>
+                </ul>
+                <ul class="nav" style="margin-left: 80px;">
+                    <li class="active"><a href="#lv">LV</a></li>
+                    <li><a href="#ru">RU</a></li>
+                </ul>
+                <form class="navbar-form pull-right">
+                    <input class="span2" type="text" placeholder="Email">
+                    <input class="span2" type="password" placeholder="Password">
+                    <button type="submit" class="btn">Sign in</button>
+                </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<form method="POST" enctype="multipart/form-data">
+<fieldset>
+<div id="addListing" class="modal hide fade">
+
+    <!-- Carousel -->
+    <div id="addListingCarousel" class="carousel">
+        <div class="carousel-inner">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Post new listing</h3>
+            </div>
+            <!-- Carousel Item 1 active -->
+            <div class="active item">
+                <!-- Modal Item 1 Add Listing Forms-->
+                <div class="modal-body">
+
+                    <div class="span6">
+                        <span class="lead">
+                            I have a job for a good and reliable handyman.
+                        </span>
+                    </div>
+
+                    <div style="margin-top: 1em;" class="span3">
+                        <label>I am seeking a / an</label>
+                        <input type="text" placeholder="Craft" name="craft" id="craft">
+                    </div>
+                    <div style="margin-top: 1em;" class="span3">
+                        <label>located in</label>
+                        <input type="text" id="city" data-provide="typeahead" data-source="{{ cities }}" placeholder="City" name="city">
+                    </div>
+
+                    <div class="span6">
+                        <label>to help me with the following task</label>
+                        <textarea class="span6" id="description" name="description" rows="5"></textarea>
+                    </div>
+
+                    <div class="span3">
+                        <label>Send offerings to this email:</label>
+                        <input type="email" id="email" name="email" value="" class="span3">
+                    </div>
+
+                    <div class="span3">
+                        <label>Work start date:</label>
+                        <input type="text" id="datepicker" name="start_date" value="{{ date }}">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <a href="#" class="btn">Close</a>
+                    <a href="#addListingCarousel" id="nextButton" style="width: 80px;"class="btn btn-primary pull-right" data-slide="next">Next step</a>
+                </div>
+            </div>
+
+            <!-- Carousel Item 2 -->
+            <div class="item">
+
+                <!-- Modal Item 2 upload images -->
+                <div class="modal-body">
+
+                    <div class="span6">
+                        <span class="lead">
+                            If you like upload some images
+                        </span>
+                    </div>
+
+                    <div class="span6"  style="margin-top: 10px;">
+                        <a class="btn pull-left" onclick="$('input[id=file]').click();">Add images</a>
+                        <input type="file" name="images" id="file" style="visibility: hidden" multiple="">
+                    </div>
+
+                    <div class="span6" id="im" style="margin-top: 8px;">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <a href="#addListingCarousel" style="width: 36px;"class="btn" data-slide="prev">Back</a>
+                    <button id="submitButton" style="width: 106px;"class='btn btn-success pull-right'>Post Listing</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</fieldset>
+</form>
+
+{% endblock %}
