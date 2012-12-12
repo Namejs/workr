@@ -4,7 +4,7 @@
     <h1>This is the List page</h1>
 
     {% for l in list %}
-        <p><a href="{{ url_for('post', sub_url=l.sub_url) }}"><img src="{{ url_for('static', filename=l.images[0].thumbnail) }}"></a> I need an {{ l.craft.craft }} in {{ l.city.city }} who can help me with the following task:
+        <p><a href="{{ url_for('post', sub_url=l.sub_url) }}"><img src="{{ url_for('static', filename=l.images.thumbnail) }}"></a> I need an {{ l.craft.craft }} in {{ l.city.city }} who can help me with the following task:
         <p>{{ l.description }}</p>
         <p><a href="{{ url_for('post', sub_url=l.sub_url) }}">Link to Post</a></p>
 

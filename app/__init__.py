@@ -53,8 +53,8 @@ def index():
     elif request.method == 'POST':
 
         if 'sub_url' in session:
+
             sub_url = session['sub_url']
-            post = schema.Post.objects(sub_url=sub_url)
 
             email        = request.form['email']
             craft        = request.form['craft']
@@ -71,6 +71,7 @@ def index():
             (craft, is_new) = schema.Craft.objects.get_or_create(craft=craft)
             (city, is_new)  = schema.City.objects.get_or_create(city=city)
 
+            post = schema.Post.objects(sub_url=sub_url).first()
             post.description   = description
             post.craft         = craft
             post.city          = city
@@ -78,17 +79,13 @@ def index():
             post.creation_date = datetime.datetime.now()
             post.start_date    = start_date
 
-
             post.save()
-
-            session.pop('sub_url', None)
 
             return redirect(url_for('post', sub_url=sub_url))
 
-        else:
-            post    = schema.Post().save()
-            sub_url = post.sub_url = str(post.id)[-5:]
+        #            session.pop('sub_url', None)
 
+        else:
             email        = request.form['email']
             craft        = request.form['craft']
             city         = request.form['city']
@@ -104,6 +101,8 @@ def index():
             (craft, is_new) = schema.Craft.objects.get_or_create(craft=craft)
             (city, is_new)  = schema.City.objects.get_or_create(city=city)
 
+            post               = schema.Post().save()
+            sub_url            = str(post.id)[-5:]
             post.description   = description
             post.craft         = craft
             post.city          = city
@@ -122,9 +121,9 @@ def index():
 
 
 #        images  = request.files.getlist('images')
-
+#
 #        sub_url = request.form['sub_url']
-
+#
 #        post = schema.Post.objects(sub_url=sub_url).first()
 #        post = schema.Post().save()
 #        post.sub_url = str(post.id)[-5:]
@@ -158,13 +157,15 @@ def post(sub_url):
     post       = schema.Post.objects(sub_url=sub_url).first()
     created_on = post.creation_date
 
+
+
     return render_template('post.html',
                             craft        = post.craft.craft,
                             city         = post.city.city,
                             description  = post.description,
                             user         = post.author.email,
                             sub_url      = sub_url,
-#                            images       = post.images,
+                            images       = post.images,
                             created_on   = created_on,
                             start_date   = post.start_date)
 
